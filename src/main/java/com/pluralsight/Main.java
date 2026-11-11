@@ -22,6 +22,7 @@ public class Main {
             System.out.println("BigDecimal: " + lilD);
         }
 
+        // Reset to 0
         numF = 0;
         numD = 0;
         lilD = BigDecimal.ZERO;
@@ -38,9 +39,20 @@ public class Main {
         System.out.println("Double: " + numD);
         System.out.println("BigDecimal: " + lilD);
 
-        //1. numF (the float) is off by a few cents after 1000 iterations.
+        // Convert the float to a BigDecimal to compare them
+        BigDecimal bigF = BigDecimal.valueOf(numF);
+
+
+        int result = bigF.compareTo(lilD);
+        if (result == 0) {
+            System.out.println("They are equal!");
+        } else {
+            System.out.println("They are not equal! " + bigF.subtract(lilD));
+        }
+
+        //1. numF (the float) is off by 18 cents after 1000 iterations.
         //2. BigDecimal keeps the scale of values I've added to it.
-        //3. The values stay the same because immutable (idk)?
+        //3. The values stay the same because immutable/unmodified once initialized (idk)?
 
     }
 }
